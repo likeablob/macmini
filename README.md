@@ -23,12 +23,13 @@ $ git clone https://github.com/tj/n /tmp/n && cd /tmp/n && sudo make install
 $ sudo n v10
 
 # Install https://github.com/xpertsavenue/WiringOP-Zero
+$ cd ~/
 $ git clone https://github.com/xpertsavenue/WiringOP-Zero
 ## Please refer to https://github.com/xpertsavenue/WiringOP-Zero
 
 # Setup vncserver
-$ mkdir .vnc
-$ vncpasswd .vnc/passwd
+$ mkdir ~/.vnc
+$ vncpasswd ~/.vnc/passwd
 
 # Install the dependencies & config files
 $ git clone https://github.com/likeablob/macmini ~/macmini
@@ -95,5 +96,5 @@ Internally `xthighvncserver` and `ssvncviewer` are used to scale the display.
 ## Acknowledgment
 - Mini vMac https://www.gryphel.com/c/minivmac/
 - Basilisk II https://basilisk.cebix.net/
-- Kudos to all the devs!s
+- Kudos to all the devs!
 
