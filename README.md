@@ -16,7 +16,7 @@
   - Install Armbian Bionic. https://www.armbian.com/orange-pi-zero-plus-2-h3/
   - Then SSH into the device.
 ```bash
-$ sudo apt install -y git xtightvncserver
+$ sudo apt install -y git tightvncserver
 
 # Install Node.js
 $ git clone https://github.com/tj/n /tmp/n && cd /tmp/n && sudo make install
@@ -26,6 +26,11 @@ $ sudo n v10
 $ cd ~/
 $ git clone https://github.com/xpertsavenue/WiringOP-Zero
 ## Please refer to https://github.com/xpertsavenue/WiringOP-Zero
+
+# Enable spi interface 
+$ sudo vi /boot/armbianEnv.txt # or use armbian-config
+! overlays=spi-spidev analog-codec usbhost2 usbhost3
++ param_spidev_spi_bus=1
 
 # Setup vncserver
 $ mkdir ~/.vnc
@@ -37,10 +42,12 @@ $ cd ~/macmini
 $ sudo ./install.sh
 
 # copy ypur assests
-$ cp /path/to/vmac.rom ~/macmini/minivmac/vmac.rom # Mini vMac ROM file
+$ cp /path/to/vmac.rom ~/macmini/minivmac/vMac.ROM # Mini vMac ROM file
 $ cp /path/to/vmac.dsk ~/macmini/minivmac/system.dsk # Mini vMac disk file
 $ cp /path/to/.basilisk_ii_prefs ~/.basilisk_ii_prefs # Basilisk II config file
 $ cp /path/to/macboot.wav ~/macmini/macboot.wav # Boot sound (optional)
+
+$ sudo reboot now
 ```
 - [Tips]: Here is my working [.basilisk_ii_prefs](basilisk_ii_prefs.md).
   
@@ -70,9 +77,9 @@ $ cp /path/to/macboot.wav ~/macmini/macboot.wav # Boot sound (optional)
 5. `~/macmini/switcher/gpio-reader.js` watchs the push SW at GPIO7(PA06) and send a request to `localhost:5501/`.
 
 ### How does the low-res LCD(320x240) handle 512x384 resolution?
-Internally `xthighvncserver` and `ssvncviewer` are used to scale the display.
+Internally `tightvncserver` and `ssvncviewer` are used to scale the display.
 - e.g. [`1_large_minimac.sh`]((./switcher/sh.d/1_large_minimac.sh)) launches: 
-  -  `xthighvncserver` to create a virtual display (512x384) at `DISPLAY=:1` (`:5901`)
+  -  `tightvncserver` to create a virtual display (512x384) at `DISPLAY=:1` (`:5901`)
   -  `minivmac` in `DISPLAY:1`
   -  `ssvncviewer -scale 0.625` in `DISPLAY:0` (By the `-scale` option, low-res LED get upscaled)
 ## Gallery
