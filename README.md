@@ -41,7 +41,7 @@ $ git clone https://github.com/likeablob/macmini ~/macmini
 $ cd ~/macmini
 $ sudo ./install.sh
 
-# copy ypur assests
+# copy your assests
 $ cp /path/to/vmac.rom ~/macmini/minivmac/vMac.ROM # Mini vMac ROM file
 $ cp /path/to/vmac.dsk ~/macmini/minivmac/system.dsk # Mini vMac disk file
 $ cp /path/to/.basilisk_ii_prefs ~/.basilisk_ii_prefs # Basilisk II config file
@@ -78,7 +78,7 @@ $ sudo reboot now
 
 ### How does the low-res LCD(320x240) handle 512x384 resolution?
 Internally `tightvncserver` and `ssvncviewer` are used to scale the display.
-- e.g. [`1_large_minimac.sh`]((./switcher/sh.d/1_large_minimac.sh)) launches: 
+- e.g. [`1_large_minimac.sh`](./switcher/sh.d/1_large_minimac.sh) launches: 
   -  `tightvncserver` to create a virtual display (512x384) at `DISPLAY=:1` (`:5901`)
   -  `minivmac` in `DISPLAY:1`
   -  `ssvncviewer -scale 0.625` in `DISPLAY:0` (By the `-scale` option, low-res LED get upscaled)
