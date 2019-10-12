@@ -27,7 +27,7 @@ $ cd ~/
 $ git clone https://github.com/xpertsavenue/WiringOP-Zero
 ## Please refer to https://github.com/xpertsavenue/WiringOP-Zero
 
-# Enable spi interface 
+# Enable SPI1 interface
 $ sudo vi /boot/armbianEnv.txt # or use armbian-config
 ! overlays=spi-spidev analog-codec usbhost2 usbhost3
 + param_spidev_spi_bus=1
@@ -41,13 +41,22 @@ $ git clone https://github.com/likeablob/macmini ~/macmini
 $ cd ~/macmini
 $ sudo ./install.sh
 
-# copy your assests
+# Copy your assets
 $ cp /path/to/vmac.rom ~/macmini/minivmac/vMac.ROM # Mini vMac ROM file
 $ cp /path/to/vmac.dsk ~/macmini/minivmac/system.dsk # Mini vMac disk file
 $ cp /path/to/.basilisk_ii_prefs ~/.basilisk_ii_prefs # Basilisk II config file
 $ cp /path/to/macboot.wav ~/macmini/macboot.wav # Boot sound (optional)
 
+# Reboot to apply the settings
 $ sudo reboot now
+
+# Select LineOut as the default sink
+$ pacmd list-sinks | grep -e 'name:' -e 'index:'
+  index: 0
+	  name: <alsa_output.platform-1c22c00.codec.analog-mono> # LineOut
+* index: 1
+	  name: <alsa_output.platform-soc_sound.stereo-fallback> # HDMI
+$ pactl set-default-sink 0 # or use `DISPLAY=:1 pavucontrol` and `alsamixer` to adjust volume
 ```
 - [Tips]: Here is my working [.basilisk_ii_prefs](basilisk_ii_prefs.md).
   
@@ -55,19 +64,25 @@ $ sudo reboot now
 
 <img align="center" width="auto" height="400px" src="./images/mm_s_8.jpg">
 
-| OPi            | Peripherals          |
-| -------------- | -------------------- |
-| PA15/SPI1_MOSI | LCD MOSI             |
-| PA16/SPI1_MISO | LCD MISO             |
-| PA14/SPI1_CLK  | LCD CLK              |
-| PA13/SPI1_CS   | LCD CS               |
-| PS12           | LCD RESET            |
-| PA11           | LCD DC               |
-| PA06           | Push Switch          |
-| USB-DP2        | USB (Front) Data+    |
-| USB-DM2        | USB (Front) Data-    |
-| 5V             | USB (Front/Rear) 5V  |
-| GND            | USB (Front/Rear) GND |
+| OPi            | Peripherals                |
+| -------------- | -------------------------- |
+| PA15/SPI1_MOSI | LCD MOSI                   |
+| PA16/SPI1_MISO | LCD MISO                   |
+| PA14/SPI1_CLK  | LCD CLK                    |
+| PA13/SPI1_CS   | LCD CS                     |
+| PS12           | LCD RESET                  |
+| PA11           | LCD DC                     |
+| PA06           | Push Switch                |
+| GND            | Push Switch                |
+| USB-DP2        | USB (Front) Data+          |
+| USB-DM2        | USB (Front) Data-          |
+| 5V             | USB (Front/Rear) 5V        |
+| GND            | USB (Front/Rear) GND       |
+| LINEOUTL       | (Optional) Amplifier Input |
+
+- [Tips]: Pinout can be found here.
+  - https://linux-sunxi.org/Xunlong_Orange_Pi_Zero_Plus
+  - http://www.orangepi.org/orangepibbsen/forum.php?mod=viewthread&tid=2236
 
 ## Basic Concepts
 1. At system boot, [`fbtft_device`](./config/fbtft.conf) kernel module is loaded and it initializes the LCD as `/dev/fb0`.
@@ -82,6 +97,7 @@ Internally `tightvncserver` and `ssvncviewer` are used to scale the display.
   -  `tightvncserver` to create a virtual display (512x384) at `DISPLAY=:1` (`:5901`)
   -  `minivmac` in `DISPLAY:1`
   -  `ssvncviewer -scale 0.625` in `DISPLAY:0` (By the `-scale` option, low-res LED get upscaled)
+
 ## Gallery
 | <img align="center" width="auto" height="200px" src="./images/mm_s_5.jpg">  | <img align="center" width="auto" height="200px" src="./images/mm_s_7.jpg">  |
 | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------------: |
@@ -99,6 +115,8 @@ Internally `tightvncserver` and `ssvncviewer` are used to scale the display.
 | M2 x 6 mm Self Tapping Screw                            |    16    |                         |
 | D10mm Rounding Magnet                                   |    2     |                         |
 | 7x7 mm Push Switch                                      |    1     |                         |
+| 2W Small Speaker                                        |    1     | (Optional)              |
+| ClassD Audio Amplifier Board                            |    1     | (Optional) PAM8403      |
 
 ## Acknowledgment
 - Mini vMac https://www.gryphel.com/c/minivmac/
