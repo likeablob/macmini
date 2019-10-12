@@ -118,7 +118,7 @@ Internally `tightvncserver` and `ssvncviewer` are used to scale the display.
 | 2W Small Speaker                                        |    1     | (Optional)              |
 | ClassD Audio Amplifier Board                            |    1     | (Optional) PAM8403      |
 
-## Acknowledgment
+## Acknowledgments
 - Mini vMac https://www.gryphel.com/c/minivmac/
 - Basilisk II https://basilisk.cebix.net/
 - Kudos to all the devs!
