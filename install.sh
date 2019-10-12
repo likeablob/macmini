@@ -30,6 +30,7 @@ fc-cache -fv # just in case
 
 cp -a config/.xinitrc ~/.xinitrc
 cp -a config/.xsession ~/.xsession
+cp -a config/.Xdefaults ~/.Xdefaults
 cp -a config/xstartup ~/.vnc/
 cp config/99-fbdev.conf /etc/X11/xorg.conf.d/
 cp config/fbtft.conf /etc/modprobe.d/
