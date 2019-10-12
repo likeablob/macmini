@@ -80,9 +80,13 @@ $ pactl set-default-sink 0 # or use `DISPLAY=:1 pavucontrol` and `alsamixer` to 
 | GND            | USB (Front/Rear) GND       |
 | LINEOUTL       | (Optional) Amplifier Input |
 
-- [Tips]: Pinout can be found here.
-  - https://linux-sunxi.org/Xunlong_Orange_Pi_Zero_Plus
-  - http://www.orangepi.org/orangepibbsen/forum.php?mod=viewthread&tid=2236
+- [Tips]: Pinout can be found below.
+  - OPiZero
+    - https://linux-sunxi.org/Xunlong_Orange_Pi_Zero_Plus
+    - http://www.orangepi.org/orangepibbsen/forum.php?mod=viewthread&tid=2236
+  - LCD (Note that there might be some variants.)
+    - [link1](https://www.solidrop.net/product/free-ship-5pc-lot-2-4inch-spi-tft-lcd-screen-18pin-240-320-color-lcd-drive-ic-ili9341-4io-only-for-stm32-mcu-raspberry-pi.html) [link2](https://github.com/myelin/tiny-tft/blob/master/TJC-024-9341-18-pin-SPI-240x320-ili9341-2.4-inch-touch/chinese-driver/TJC-024-9341.pdf)
+    - [backup](./images/lcd-ili9341-pinout.jpg)
 
 ## Basic Concepts
 1. At system boot, [`fbtft_device`](./config/fbtft.conf) kernel module is loaded and it initializes the LCD as `/dev/fb0`.
@@ -110,7 +114,7 @@ Internally `tightvncserver` and `ssvncviewer` are used to scale the display.
 | Name                                                    | Quantity | Descriptions            |
 | ------------------------------------------------------- | :------: | ----------------------- |
 | OrangePi Zero Plus 2 (H3)                               |    1     | H5 ver. might work too. |
-| 2.4inch SPI Display (ili9340, 320x240, with flat cable) |    1     |                         |
+| 2.4inch SPI Display (ili9341, 320x240, with flat cable) |    1     |                         |
 | Generic micro-USB Breakout Board                        |    2     |                         |
 | M2 x 6 mm Self Tapping Screw                            |    16    |                         |
 | D10mm Rounding Magnet                                   |    2     |                         |
