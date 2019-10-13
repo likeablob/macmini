@@ -1,5 +1,4 @@
 $fn=40;
-include <mylib.scad>
 include <scad-utils/morphology.scad>
 
 WH_RATIO = 22.7/29.2;
