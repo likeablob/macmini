@@ -37,7 +37,7 @@ cp config/fbtft.conf /etc/modprobe.d/
 echo fbtft_device > /etc/modules-load.d/fbtft.conf
 cp config/asound.conf /etc/
 cp config/rc.local /etc/
-sed -i.orig -e "s/NODM_USER=root/NODM_USER=${USER}/" /etc/default/nodm 
+sed -i.orig -e "s/NODM_USER=root/NODM_USER=${SUDO_USER}/" /etc/default/nodm 
 
 sudo -u $SUDO_USER sh -c "cd switcher && npm i --production"
 
