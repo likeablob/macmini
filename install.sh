@@ -20,7 +20,6 @@ apt update && apt install -y -q \
     xfonts-base \
     xloadimage \
     tmux \
-    sl \
     pulseaudio \
     pulseaudio-esound-compat \
     pulseaudio-utils \
