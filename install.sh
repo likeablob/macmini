@@ -27,10 +27,10 @@ apt update && apt install -y -q \
 
 fc-cache -fv # just in case
 
-cp -a config/.xinitrc ~/.xinitrc
-cp -a config/.xsession ~/.xsession
-cp -a config/.Xdefaults ~/.Xdefaults
-cp -a config/xstartup ~/.vnc/
+cp -a config/.xinitrc /home/${SUDO_USER}/.xinitrc
+cp -a config/.xsession /home/${SUDO_USER}/.xsession
+cp -a config/.Xdefaults /home/${SUDO_USER}/.Xdefaults
+cp -a config/xstartup /home/${SUDO_USER}/.vnc/
 cp config/99-fbdev.conf /etc/X11/xorg.conf.d/
 cp config/fbtft.conf /etc/modprobe.d/
 echo fbtft_device > /etc/modules-load.d/fbtft.conf
