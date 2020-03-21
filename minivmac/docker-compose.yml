@@ -1,0 +1,19 @@
+version: "3"
+services:
+  builder_aarch64:
+    build:
+      context: .
+      dockerfile: aarch64.Dockerfile
+    volumes:
+      - ".:/workdir:rw"
+    working_dir: /workdir
+    command: "cp /minivmac.aarch64.320 /minivmac.aarch64.512 /workdir"
+
+  builder_armv7l:
+    build:
+      context: .
+      dockerfile: armv7l.Dockerfile
+    volumes:
+      - ".:/workdir:rw"
+    working_dir: /workdir
+    command: "cp /minivmac.armv7l.320 /minivmac.armv7l.512 /workdir"
