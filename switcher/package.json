@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "node-fetch": "^2.6.0",
     "orange-pi-gpio": "^1.0.2"
   },
